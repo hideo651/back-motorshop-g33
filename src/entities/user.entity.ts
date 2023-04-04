@@ -67,7 +67,7 @@ class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Cars, (car) => car.user)
+  @OneToMany(() => Cars, (cars) => cars.user)
   cars: Cars[];
 }
 
