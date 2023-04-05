@@ -4,7 +4,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
+import { Announcement } from "./announcement.entity";
 
 @Entity("users")
 class User {
@@ -17,40 +19,40 @@ class User {
   @Column({ length: 100, unique: true })
   email: string;
 
-  @Column({ length: 100, unique: true })
+  @Column({ length: 20, unique: true })
   cpf: string;
 
-  @Column({ length: 100 })
-  cellphone: string;
+  @Column({ length: 20 })
+  phone: string;
 
   @Column()
   birthday: Date;
 
-  @Column({ length: 200 })
+  @Column({ length: 280 })
   description: string;
 
-  @Column({ length: 20 })
+  @Column({ length: 10 })
   cep: string;
 
-  @Column({ length: 120 })
+  @Column({ length: 20 })
   state: string;
 
-  @Column({ length: 120 })
+  @Column({ length: 100 })
   city: string;
 
-  @Column({ length: 120 })
+  @Column({ length: 140 })
   street: string;
 
-  @Column({ length: 120 })
+  @Column({ length: 5 })
   number: string;
 
-  @Column({ nullable: true })
-  complemente: string;
+  @Column({ length: 50, nullable: true })
+  complement: string;
 
   @Column({ default: false })
   isStaff: boolean;
 
-  @Column({ length: 120 })
+  @Column({ length: 80 })
   password: string;
 
   @Column({ default: false })
@@ -64,6 +66,9 @@ class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => Announcement, (Announcement) => Announcement.user)
+  announcement: Announcement[];
 }
 
 export { User };
