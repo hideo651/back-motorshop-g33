@@ -1,9 +1,10 @@
 import { DataSource } from "typeorm";
 import path from "path";
 import "dotenv/config";
+
 import { User } from "./entities/user.entity";
-import { Cars } from "./entities/cars.entity";
-import { createEntityCar1680623312778 } from "./migrations/1680623312778-createEntityCar";
+import { Announcement } from "./entities/announcement.entity";
+import { createInitialEntities1680722496020 } from "./migrations/1680722496020-createInitialEntities";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -22,8 +23,8 @@ const AppDataSource = new DataSource(
         database: process.env.PGDATABASE,
         logging: true,
         synchronize: false,
-        entities: [User, Cars],
-        migrations: [createEntityCar1680623312778],
+        entities: [User, Announcement],
+        migrations: [createInitialEntities1680722496020],
       }
 );
 

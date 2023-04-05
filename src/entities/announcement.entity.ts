@@ -3,7 +3,7 @@ import { Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./user.entity";
 
 @Entity()
-export class Cars {
+export class Announcement {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -25,10 +25,10 @@ export class Cars {
   @Column({ length: 120 })
   color: string;
 
-  @Column("decimal", { precision: 2, scale: 2 })
+  @Column("decimal", { precision: 10, scale: 2 })
   fipe: number;
 
-  @Column("decimal", { precision: 2, scale: 2 })
+  @Column("decimal", { precision: 10, scale: 2 })
   price: number;
 
   @Column({ length: 240 })
@@ -37,12 +37,15 @@ export class Cars {
   @Column()
   cover: string;
 
+  @Column({ default: true })
+  isActive: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => User, (user: User) => user.cars)
+  @ManyToOne(() => User, (user: User) => user.announcement)
   user: User;
 }
