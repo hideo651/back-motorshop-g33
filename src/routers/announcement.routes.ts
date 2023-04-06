@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { newAnnouncementController } from "../controllers/announcements.controller";
+import {
+  listAnnouncementController,
+  newAnnouncementController,
+} from "../controllers/announcements.controller";
 import validTokenMiddleware from "../middleware/validToken.middleware";
 import { verifyRequestPerSchema } from "../middleware/validSchema.middleware";
 import { AnnouncementRequestSchema } from "../schemas/announcement";
@@ -12,5 +15,7 @@ announcementRoutes.post(
   verifyRequestPerSchema(AnnouncementRequestSchema),
   newAnnouncementController
 );
+
+announcementRoutes.get("/", listAnnouncementController);
 
 export default announcementRoutes;
