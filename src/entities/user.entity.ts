@@ -9,7 +9,7 @@ import {
 import { Announcement } from "./announcement.entity";
 
 @Entity("users")
-class User {
+export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -52,7 +52,7 @@ class User {
   @Column({ default: false })
   isStaff: boolean;
 
-  @Column({ length: 80 })
+  @Column({ length: 80, select: false })
   password: string;
 
   @Column({ default: false })
@@ -70,5 +70,3 @@ class User {
   @OneToMany(() => Announcement, (Announcement) => Announcement.user)
   announcement: Announcement[];
 }
-
-export { User };

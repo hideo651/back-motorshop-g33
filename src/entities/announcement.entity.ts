@@ -2,7 +2,7 @@ import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./user.entity";
 
-@Entity()
+@Entity("announcement")
 export class Announcement {
   @PrimaryGeneratedColumn("uuid")
   id: string;
