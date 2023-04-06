@@ -2,6 +2,7 @@ import AppDataSource from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
 import { User } from "../../entities/user.entity";
 import { IAnnouncementRequest } from "../../interfaces/Announcement";
+import { AnnouncementResponseSchema } from "../../schemas/announcement";
 
 export const newAnnouncementService = async (
   payload: IAnnouncementRequest,
@@ -19,5 +20,10 @@ export const newAnnouncementService = async (
 
   await announcementRepo.save(newAnnouncement);
 
-  return newAnnouncement;
+  const returnAnnouncement = await AnnouncementResponseSchema.validate(
+    newAnnouncement,
+    { stripUnknown: true }
+  );
+
+  return returnAnnouncement;
 };

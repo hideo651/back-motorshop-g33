@@ -52,7 +52,7 @@ export class User {
   @Column({ default: false })
   isStaff: boolean;
 
-  @Column({ length: 80, select: false })
+  @Column({ length: 80 })
   password: string;
 
   @Column({ default: false })
