@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const CardResponse = yup.object().shape({
+export const AnnouncementResponseSchema = yup.object().shape({
   id: yup.string().required(),
   brand: yup.string().required(),
   model: yup.string().required(),
@@ -17,9 +17,9 @@ export const CardResponse = yup.object().shape({
   updatedAt: yup.date().required(),
 });
 
-export const CarsRequestSchema = yup.object().shape({
+export const AnnouncementRequestSchema = yup.object().shape({
   brand: yup.string().required(),
-  modal: yup.string().required(),
+  model: yup.string().required(),
   year: yup.number().required(),
   fuel: yup.string().required(),
   milage: yup.number().integer().required(),
@@ -30,15 +30,16 @@ export const CarsRequestSchema = yup.object().shape({
       const floantNUmber = parseFloat(originalValue);
       return isNaN(floantNUmber) ? undefined : floantNUmber;
     })
-    .typeError("O valor precisa der decimal"),
+    .typeError("O valor precisa der decimal")
+    .required(),
   price: yup
     .number()
     .transform((value, originalValue) => {
       const floantNUmber = parseFloat(originalValue);
       return isNaN(floantNUmber) ? undefined : floantNUmber;
     })
-    .typeError("O valor precisa der decimal"),
+    .typeError("O valor precisa der decimal")
+    .required(),
   description: yup.string().required(),
   cover: yup.string().required(),
-  user: yup.object().required(),
 });

@@ -1,20 +1,20 @@
 import { IUser } from "../users";
 
-export interface ICarRequest {
+export interface IAnnouncementRequest {
   brand: string;
   model: string;
   year: number;
   fuel: string;
   milage: number;
   color: string;
-  fipe: "decimal";
-  price: "decimal";
+  fipe: number;
+  price: number;
   description: string;
   cover: string;
   user: IUser;
 }
 
-export interface ICars {
+export interface IAnnouncements {
   id: string;
   brand: string;
   model: string;
@@ -32,7 +32,7 @@ export interface ICars {
   user: IUser;
 }
 
-export interface ICarUpdate {
+export interface IAnnouncementUpdate {
   brand?: string;
   model?: string;
   year?: number;
