@@ -17,9 +17,6 @@ export const listAnnouncementController = async (
 ) => {
   const page = Number(req.query.page);
   const limit = Number(req.query.limit);
-  console.log("**************************");
-  console.log(page);
-  console.log(limit);
   const data = await listAnnouncementService(page, limit);
 
   return res.status(200).json(data);
