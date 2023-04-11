@@ -28,7 +28,7 @@ export const ensureIsStaffOrIsAdmMiddleware = async (
 				throw new AppError(401, "Invalid token: " + error.message);
 			}
 
-			if (!decoded.isStaff || !decoded.isAdm) {
+			if (!decoded.isStaff && !decoded.isAdm) {
 				throw new AppError(
 					403,
 					"Forbidden: Only staff or admin can access this resource"

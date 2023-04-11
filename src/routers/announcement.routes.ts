@@ -1,8 +1,9 @@
 import { Router } from "express";
 import {
-  listAnnouncementController,
   newAnnouncementController,
+  listAnnouncementController,
   updateAnnouncementController,
+  deleteAnnouncementController,
 } from "../controllers/announcements.controller";
 import validTokenMiddleware from "../middleware/validToken.middleware";
 import { verifyRequestPerSchema } from "../middleware/validSchema.middleware";
@@ -22,6 +23,11 @@ announcementRoutes.patch(
   "/:id",
   ensureIsStaffOrIsAdmMiddleware,
   updateAnnouncementController,
+  );
+  announcementRoutes.delete(
+    "/:id",
+    ensureIsStaffOrIsAdmMiddleware,
+    deleteAnnouncementController
   );
 
 export default announcementRoutes;
