@@ -22,12 +22,12 @@ announcementRoutes.get("/", listAnnouncementController);
 announcementRoutes.patch(
   "/:id",
   ensureIsStaffOrIsAdmMiddleware,
-  updateAnnouncementController,
-  );
-  announcementRoutes.delete(
-    "/:id",
-    ensureIsStaffOrIsAdmMiddleware,
-    deleteAnnouncementController
-  );
+  updateAnnouncementController
+);
+announcementRoutes.delete(
+  "/:id",
+  ensureIsStaffOrIsAdmMiddleware,
+  deleteAnnouncementController
+);
 
 export default announcementRoutes;

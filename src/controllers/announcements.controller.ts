@@ -47,9 +47,7 @@ export const deleteAnnouncementController = async (
   res: Response
 ) => {
   try {
-    const updatedData = await deleteAnnouncementService(
-      req.params.id,
-    );
+    const updatedData = await deleteAnnouncementService(req.params.id);
 
     return res.status(200).json(updatedData);
   } catch (error) {
