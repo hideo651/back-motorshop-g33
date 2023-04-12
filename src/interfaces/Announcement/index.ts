@@ -11,6 +11,7 @@ export interface IAnnouncementRequest {
   price: number;
   description: string;
   cover: string;
+  avatar?: string;
   user: IUser;
 }
 
@@ -29,6 +30,7 @@ export interface IAnnouncements {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
+  avatar?: string;
   user: IUser;
 }
 
@@ -42,5 +44,6 @@ export interface IAnnouncementUpdate {
   fipe?: number;
   price?: number;
   description?: string;
+  avatar?: string;
   cover?: string;
 } //ponto de observação, estou passando objeto User, se preferir pode ser userId : string

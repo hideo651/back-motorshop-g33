@@ -3,6 +3,7 @@ import { newAnnouncementService } from "../services/announcements/newAnnouncemen
 import { listAnnouncementService } from "../services/announcements/listAnnouncement.service";
 import { updateAnnouncementService } from "../services/announcements/updateAnnouncement.service";
 import { deleteAnnouncementService } from "../services/announcements/deleteAnnouncement.service";
+import { getUserRetrieverService } from "../services/announcements/getUserRetriever.service";
 
 export const newAnnouncementController = async (
   req: Request,
@@ -39,4 +40,12 @@ export const deleteAnnouncementController = async (
   const data = await deleteAnnouncementService(req.params.id);
 
   return res.status(200).json();
+};
+
+export const getUserRetrieveController = async (
+  req: Request,
+  res: Response
+) => {
+  const user = await getUserRetrieverService(req.params.id);
+  return res.status(200).json(user);
 };
