@@ -9,6 +9,7 @@ import validTokenMiddleware from "../middleware/validToken.middleware";
 import { verifyRequestPerSchema } from "../middleware/validSchema.middleware";
 import { AnnouncementRequestSchema } from "../schemas/announcement";
 import { ensureIsStaffOrIsAdmMiddleware } from "../middleware/ensureIsStaffOrIsAdm.middleware";
+import { validIdAnnouncement } from "../middleware/validAnnouncement.middleware";
 
 const announcementRoutes = Router();
 
@@ -22,12 +23,14 @@ announcementRoutes.get("/", listAnnouncementController);
 announcementRoutes.patch(
   "/:id",
   ensureIsStaffOrIsAdmMiddleware,
-  updateAnnouncementController,
-  );
-  announcementRoutes.delete(
-    "/:id",
-    ensureIsStaffOrIsAdmMiddleware,
-    deleteAnnouncementController
-  );
+  validIdAnnouncement,
+  updateAnnouncementController
+);
+announcementRoutes.delete(
+  "/:id",
+  ensureIsStaffOrIsAdmMiddleware,
+  validIdAnnouncement,
+  deleteAnnouncementController
+);
 
 export default announcementRoutes;

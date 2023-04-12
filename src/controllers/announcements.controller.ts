@@ -28,33 +28,15 @@ export const updateAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  try {
-    const updatedData = await updateAnnouncementService(
-      req.params.id,
-      req.body
-    );
-
-    return res.status(200).json(updatedData);
-  } catch (error) {
-    return res.status(400).json({
-      message: error.message,
-    });
-  }
+  const updatedData = await updateAnnouncementService(req.params.id, req.body);
+  return res.status(200).json(updatedData);
 };
 
 export const deleteAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  try {
-    const updatedData = await deleteAnnouncementService(
-      req.params.id,
-    );
+  const data = await deleteAnnouncementService(req.params.id);
 
-    return res.status(200).json(updatedData);
-  } catch (error) {
-    return res.status(400).json({
-      message: error.message,
-    });
-  }
+  return res.status(200).json();
 };
