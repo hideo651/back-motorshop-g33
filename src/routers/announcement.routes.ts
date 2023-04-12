@@ -4,6 +4,7 @@ import {
   listAnnouncementController,
   updateAnnouncementController,
   deleteAnnouncementController,
+  getUserRetrieveController,
 } from "../controllers/announcements.controller";
 import validTokenMiddleware from "../middleware/validToken.middleware";
 import { verifyRequestPerSchema } from "../middleware/validSchema.middleware";
@@ -28,6 +29,12 @@ announcementRoutes.patch(
   validIdAnnouncement,
   ownerAnnouncement,
   updateAnnouncementController
+);
+announcementRoutes.get(
+  "/:id",
+  validTokenMiddleware,
+  validIdAnnouncement,
+  getUserRetrieveController
 );
 announcementRoutes.delete(
   "/:id",
