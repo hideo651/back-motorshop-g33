@@ -46,6 +46,9 @@ export class Announcement {
   @UpdateDateColumn()
   updatedAt: Date;
 
+  @Column({ nullable: true })
+  avatar: string;
+
   @ManyToOne(() => User, (user: User) => user.announcement)
   user: User;
 }
