@@ -15,6 +15,9 @@ export const validIdAnnouncement = async (
     const foundAnnouncement = await announcementRepo.findOneBy({
       id: idAnnouncement,
     });
+    if (!foundAnnouncement) {
+      throw new AppError(404, "Announcement not found");
+    }
     next();
   } catch (error) {
     throw new AppError(404, "Announcement not found");
