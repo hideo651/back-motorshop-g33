@@ -10,8 +10,7 @@ export interface IAnnouncementRequest {
   fipe: number;
   price: number;
   description: string;
-  cover: string;
-  avatar?: string;
+  avatar: string;
   user: IUser;
   photos?: string[];
 }
@@ -27,12 +26,17 @@ export interface IAnnouncements {
   fipe: "decimal";
   price: "decimal";
   description: string;
-  cover: string;
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  avatar?: string;
+  avatar: string;
   user: IUser;
+  photos: IPhotos[];
+}
+export interface IPhotos {
+  id: string;
+  image: string;
+  createdAt: Date;
 }
 
 export interface IAnnouncementUpdate {
@@ -46,5 +50,5 @@ export interface IAnnouncementUpdate {
   price?: number;
   description?: string;
   avatar?: string;
-  cover?: string;
-} //ponto de observação, estou passando objeto User, se preferir pode ser userId : string
+  photos?: IPhotos[];
+}

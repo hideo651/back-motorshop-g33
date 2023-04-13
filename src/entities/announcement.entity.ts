@@ -35,9 +35,6 @@ export class Announcement {
   @Column({ length: 240 })
   description: string;
 
-  @Column()
-  cover: string;
-
   @Column({ default: true })
   isActive: boolean;
 
@@ -47,7 +44,7 @@ export class Announcement {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({ nullable: false })
+  @Column()
   avatar: string;
 
   @ManyToOne(() => User, (user: User) => user.announcement)
@@ -55,7 +52,6 @@ export class Announcement {
 
   @OneToMany(() => Photos, (photos) => photos.announcement, {
     eager: true,
-    nullable: false,
   })
   photos: Photos[];
 }

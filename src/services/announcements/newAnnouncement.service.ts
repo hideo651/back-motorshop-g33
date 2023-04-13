@@ -21,18 +21,18 @@ export const newAnnouncementService = async (
     avatar: payload.avatar,
     brand: payload.brand,
     color: payload.color,
-    cover: payload.cover,
     fipe: payload.fipe,
     fuel: payload.fuel,
     milage: payload.milage,
     model: payload.model,
     price: payload.price,
+    description: payload.description,
     year: payload.year,
     user: foundUser,
   });
 
-  console.log("passouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-  if (fotos && fotos.length > 0) {
+  await announcementRepo.save(newAnnouncement);
+  if (fotos.length > 0) {
     for (let i = 0; i < fotos.length; i++) {
       const newPhotos = photoRepo.create({
         image: fotos[i],
@@ -41,15 +41,15 @@ export const newAnnouncementService = async (
       await photoRepo.save(newPhotos);
     }
 
-    // const newPhotos = fotos.map((foto) => {
-    //   const newPhoto = photoRepo.create({
-    //     image: foto,
-    //     announcement: newAnnouncement,
+    //   const newPhotos = fotos.map((foto) => {
+    //     const newPhoto = photoRepo.create({
+    //       image: foto,
+    //       announcement: newAnnouncement,
+    //     });
+    //     return newPhoto;
     //   });
-    //   return newPhoto;
-    // });
 
-    // await photoRepo.save(newPhotos);
+    //   await photoRepo.save(newPhotos);
   }
 
   const returnAnnouncement = await AnnouncementResponseSchema.validate(
