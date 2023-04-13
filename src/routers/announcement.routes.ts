@@ -22,12 +22,6 @@ announcementRoutes.post(
   verifyRequestPerSchema(AnnouncementRequestSchema),
   newAnnouncementController
 );
-announcementRoutes.post(
-  "/:id/fotos",
-  validTokenMiddleware,
-  validIdAnnouncement,
-  registerPhotosAnnouncementController
-);
 
 announcementRoutes.get("/", listAnnouncementController);
 announcementRoutes.patch(

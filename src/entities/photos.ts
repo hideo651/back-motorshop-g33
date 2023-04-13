@@ -18,6 +18,8 @@ export class Photos {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne(() => Announcement, (announcement) => announcement.photos)
+  @ManyToOne(() => Announcement, (announcement) => announcement.photos, {
+    nullable: false,
+  })
   announcement: Announcement;
 }

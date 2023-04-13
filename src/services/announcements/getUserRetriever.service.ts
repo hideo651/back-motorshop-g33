@@ -7,9 +7,22 @@ export const getUserRetrieverService = async (
 ): Promise<Announcement> => {
   const announcement = await AppDataSource.getRepository(Announcement)
     .createQueryBuilder("announcement")
+    .leftJoinAndSelect("announcement.photos", "photos")
     .leftJoinAndSelect("announcement.user", "user")
-    .select(["announcement", "user.name", "user.id"])
+    .select([
+      "announcement",
+      "photos",
+      "user.id",
+      "user.name",
+      "user.description",
+    ])
+    .where("announcement.id = :id", { id: id })
     .getOne();
+
+  // const announcement = await announcementRepo.findOne({
+  //   where: { id: id },
+  //   relations: { user: true },
+  // });
 
   return announcement;
 };
