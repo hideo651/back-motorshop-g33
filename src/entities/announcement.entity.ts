@@ -1,6 +1,7 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./user.entity";
+import { Photos } from "./photos";
 
 @Entity("announcement")
 export class Announcement {
@@ -46,9 +47,12 @@ export class Announcement {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   avatar: string;
 
   @ManyToOne(() => User, (user: User) => user.announcement)
   user: User;
+
+  @OneToMany(() => Photos, (photos) => photos.announcement, { eager: true })
+  photos: Photos[];
 }
