@@ -4,6 +4,7 @@ import { listAnnouncementService } from "../services/announcements/listAnnouncem
 import { updateAnnouncementService } from "../services/announcements/updateAnnouncement.service";
 import { deleteAnnouncementService } from "../services/announcements/deleteAnnouncement.service";
 import { getUserRetrieverService } from "../services/announcements/getUserRetriever.service";
+import { registerPhotosAnnouncementService } from "../services/announcements/registerPhotosAnnouncement.service";
 
 export const newAnnouncementController = async (
   req: Request,
@@ -46,6 +47,15 @@ export const getUserRetrieveController = async (
   req: Request,
   res: Response
 ) => {
-  const user = await getUserRetrieverService(req.params.id);
-  return res.status(200).json(user);
+  const announcement = await getUserRetrieverService(req.params.id);
+  return res.status(200).json(announcement);
+};
+
+export const registerPhotosAnnouncementController = async (
+  req: Request,
+  res: Response
+) => {
+  const photos = req.body;
+  const data = await registerPhotosAnnouncementService(req.params.id, photos);
+  return res.status(200).json(data);
 };

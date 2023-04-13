@@ -6,6 +6,8 @@ import { User } from "./entities/user.entity";
 import { Announcement } from "./entities/announcement.entity";
 import { createInitialEntities1680722496020 } from "./migrations/1680722496020-createInitialEntities";
 import { createAvatar1681319960697 } from "./migrations/1681319960697-createAvatar";
+import { Photos } from "./entities/photos";
+import { createPhotos1681392079630 } from "./migrations/1681392079630-createPhotos";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -24,10 +26,11 @@ const AppDataSource = new DataSource(
         database: process.env.PGDATABASE,
         logging: true,
         synchronize: false,
-        entities: [User, Announcement],
+        entities: [User, Announcement, Photos],
         migrations: [
           createInitialEntities1680722496020,
           createAvatar1681319960697,
+          createPhotos1681392079630,
         ],
       }
 );

@@ -5,6 +5,7 @@ import {
   updateAnnouncementController,
   deleteAnnouncementController,
   getUserRetrieveController,
+  registerPhotosAnnouncementController,
 } from "../controllers/announcements.controller";
 import validTokenMiddleware from "../middleware/validToken.middleware";
 import { verifyRequestPerSchema } from "../middleware/validSchema.middleware";
@@ -21,6 +22,13 @@ announcementRoutes.post(
   verifyRequestPerSchema(AnnouncementRequestSchema),
   newAnnouncementController
 );
+announcementRoutes.post(
+  "/:id/fotos",
+  validTokenMiddleware,
+  validIdAnnouncement,
+  registerPhotosAnnouncementController
+);
+
 announcementRoutes.get("/", listAnnouncementController);
 announcementRoutes.patch(
   "/:id",
