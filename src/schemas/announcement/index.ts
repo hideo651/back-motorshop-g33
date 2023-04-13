@@ -16,6 +16,7 @@ export const AnnouncementResponseSchema = yup.object().shape({
   createdAt: yup.date().required(),
   avatar: yup.string().notRequired(),
   updatedAt: yup.date().required(),
+  photos: yup.date().notRequired(),
 });
 
 export const AnnouncementRequestSchema = yup.object().shape({

@@ -53,6 +53,9 @@ export class Announcement {
   @ManyToOne(() => User, (user: User) => user.announcement)
   user: User;
 
-  @OneToMany(() => Photos, (photos) => photos.announcement, { eager: true })
+  @OneToMany(() => Photos, (photos) => photos.announcement, {
+    eager: true,
+    nullable: false,
+  })
   photos: Photos[];
 }

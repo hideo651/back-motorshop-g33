@@ -13,6 +13,7 @@ export interface IAnnouncementRequest {
   cover: string;
   avatar?: string;
   user: IUser;
+  photos?: string[];
 }
 
 export interface IAnnouncements {
