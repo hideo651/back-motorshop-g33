@@ -2,6 +2,8 @@ import AppDataSource from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
 
 export const listAnnouncementService = async (page: number, limit: number) => {
+  if(!page){page = 1}
+  if(!limit){limit = 20}
   const announcementRepo = AppDataSource.getRepository(Announcement);
 
   const announcementsCount = await announcementRepo.count();
