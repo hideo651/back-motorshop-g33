@@ -2,6 +2,8 @@ import { Router } from "express";
 import {
   newUserController,
   listUsersController,
+  getProfileController,
+  getUserController,
   updateUserController,
   deleteUserController,
 } from "../controllers/users.controller";
@@ -22,6 +24,21 @@ userRoutes.post(
   validEmailMiddleware,
   newUserController
 );
+userRoutes.get(
+  "",
+  validTokenMiddleware,
+  validAdmMiddleware,
+  listUsersController
+);
+userRoutes.get(
+  '/profile', 
+  validTokenMiddleware, 
+  getProfileController);
+userRoutes.get(
+  "/:id",
+  validIdMiddleware,
+  getUserController
+);
 userRoutes.patch(
   "/:id",
   validTokenMiddleware,
@@ -29,18 +46,11 @@ userRoutes.patch(
   validUserMiddleware,
   updateUserController
 );
-userRoutes.get(
-  "",
-  validTokenMiddleware,
-  validAdmMiddleware,
-  listUsersController
-);
 userRoutes.delete(
   "/:id",
   validTokenMiddleware,
   validIdMiddleware,
   validActiveUserMiddleware,
-  validAdmMiddleware,
   deleteUserController
 );
 
