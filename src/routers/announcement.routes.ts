@@ -34,7 +34,6 @@ announcementRoutes.patch(
 );
 announcementRoutes.get(
   "/:id",
-  validTokenMiddleware,
   validIdAnnouncement,
   getUserRetrieveController
 );
