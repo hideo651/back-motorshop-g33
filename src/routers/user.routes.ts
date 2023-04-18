@@ -9,6 +9,7 @@ import {
 } from "../controllers/users.controller";
 import validAdmMiddleware from "../middleware/validAdm.middleware";
 import validEmailMiddleware from "../middleware/validEmail.middleware";
+import validCpfMiddleware from "../middleware/validCpf.middleware";
 import validIdMiddleware from "../middleware/validId.middleware";
 import validTokenMiddleware from "../middleware/validToken.middleware";
 import validUserMiddleware from "../middleware/validUser.middleware";
@@ -22,6 +23,7 @@ userRoutes.post(
   "",
   verifyRequestPerSchema(newUserSchema),
   validEmailMiddleware,
+  validCpfMiddleware,
   newUserController
 );
 userRoutes.get(
