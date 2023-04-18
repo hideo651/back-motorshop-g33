@@ -5,7 +5,8 @@ const deleteUserService = async (userId:string) => {
     const userRepo = AppDataSource.getRepository(User);
     
     const userData = await userRepo.findOneBy({id: userId});
-    const userInfo = {isActive:false};
+    let userInfo = {isActive:false};
+    if(!userData.isActive) userInfo = {isActive:true}
     const updateUser = userRepo.create({
         ...userData,
         ...userInfo

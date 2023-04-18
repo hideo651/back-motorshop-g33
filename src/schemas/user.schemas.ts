@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IUserRequest, IUserUpdate, IUser } from "../interfaces/users";
+import { IUserRequest, IUserUpdate, IUser, IProfile } from "../interfaces/users";
 
 export const newUserSchema: SchemaOf<IUserRequest> = yup.object().shape({
   name: yup.string().min(2).max(100).required(),
@@ -8,7 +8,7 @@ export const newUserSchema: SchemaOf<IUserRequest> = yup.object().shape({
   password: yup.string().max(100).required(),
   cpf: yup.string().max(20).required(),
   phone: yup.string().max(20).required(),
-  birthday: yup.date().max(10).required(),
+  birthday: yup.date().required(),
   description: yup.string().max(280).required(),
   cep: yup.string().max(10).required(),
   state: yup.string().max(20).required(),
@@ -26,7 +26,7 @@ export const updateUserSchema: SchemaOf<IUserUpdate> = yup.object().shape({
   password: yup.string().max(100),
   cpf: yup.string().max(20),
   phone: yup.string().max(20),
-  birthday: yup.date().max(10),
+  birthday: yup.date(),
   description: yup.string().max(280),
   cep: yup.string().max(10),
   state: yup.string().max(20),
@@ -42,6 +42,26 @@ export const userResponseSchema: SchemaOf<IUser> = yup.object().shape({
   createdAt: yup.date(),
   isActive: yup.boolean(),
   isAdm: yup.boolean(),
+  isStaff: yup.boolean(),
+  complement: yup.string().nullable(),
+  number: yup.string(),
+  street: yup.string(),
+  city: yup.string(),
+  state: yup.string(),
+  cep: yup.string(),
+  description: yup.string(),
+  birthday: yup.date(),
+  phone: yup.string(),
+  cpf: yup.string(),
+  email: yup.string().email(),
+  name: yup.string(),
+  id: yup.string(),
+});
+
+export const userProfileSchema: SchemaOf<IProfile> = yup.object().shape({
+  announcement: yup.array(),
+  updatedAt: yup.date(),
+  createdAt: yup.date(),
   isStaff: yup.boolean(),
   complement: yup.string().nullable(),
   number: yup.string(),

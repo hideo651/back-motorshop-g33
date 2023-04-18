@@ -5,8 +5,10 @@ import { userResponseSchema } from "../../schemas/user.schemas";
 
 const listUsersService = async () => {
     const userRepo = AppDataSource.getRepository(User);
-    const listUsers = await userRepo.find();
-    
+    const listUsers = await userRepo
+        .createQueryBuilder("user")
+        .leftJoinAndSelect("user.announcement", "annoucement")
+        .getMany();
     const returnInfo = await Promise.all(listUsers.map(async(user):Promise<IUser> => {
        const result = await userResponseSchema.validate(user, {stripUnknown: true});
        return result;

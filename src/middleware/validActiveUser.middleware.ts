@@ -8,8 +8,8 @@ const validActiveUserMiddleware = async ( req:Request, res:Response, nxt:NextFun
     const userRepo = AppDataSource.getRepository(User);
     
     const validQuery = await userRepo.findOneBy({id: checkId});
-    if(!validQuery.isActive){
-        throw new AppError(400, 'User can not be deleted.');
+    if(!validQuery.isActive && !req.user.isAdm){
+        throw new AppError(400, 'User is already deleted.');
     }
     return nxt();    
 }

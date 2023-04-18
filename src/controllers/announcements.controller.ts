@@ -40,7 +40,7 @@ export const deleteAnnouncementController = async (
 ) => {
   const data = await deleteAnnouncementService(req.params.id);
 
-  return res.status(200).json();
+  return res.status(204).json();
 };
 
 export const getUserRetrieveController = async (
