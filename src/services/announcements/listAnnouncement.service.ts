@@ -45,8 +45,9 @@ export const randAnnouncementService = async () => {
     .leftJoinAndSelect("announcement.user", "user")
     .select(["announcement", "user.name", "user.id"])
     .orderBy("RANDOM()")
+    .limit(60)
     .getMany();
-    
+
   const results: any = {};
   results.results = announcements;
 
