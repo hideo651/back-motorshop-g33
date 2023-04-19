@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { newAnnouncementService } from "../services/announcements/newAnnouncement.service";
-import { listAnnouncementService } from "../services/announcements/listAnnouncement.service";
+import { listAnnouncementService, randAnnouncementService } from "../services/announcements/listAnnouncement.service";
 import { updateAnnouncementService } from "../services/announcements/updateAnnouncement.service";
 import { deleteAnnouncementService } from "../services/announcements/deleteAnnouncement.service";
 import { getUserRetrieverService } from "../services/announcements/getUserRetriever.service";
@@ -21,9 +21,14 @@ export const listAnnouncementController = async (
 ) => {
   const page = Number(req.query.page);
   const limit = Number(req.query.limit);
-  const data = await listAnnouncementService(page, limit);
-
-  return res.status(200).json(data);
+  if(page){
+    const data = await listAnnouncementService(page, limit);
+    return res.status(200).json(data);
+  }
+  else{
+    const data = await randAnnouncementService();
+    return res.status(200).json(data);
+  }
 };
 
 export const updateAnnouncementController = async (
