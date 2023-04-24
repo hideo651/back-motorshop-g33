@@ -19,6 +19,7 @@ export class Photos {
   createdAt: Date;
 
   @ManyToOne(() => Announcement, (announcement) => announcement.photos, {
+    onDelete: 'CASCADE',
     nullable: false,
   })
   announcement: Announcement;

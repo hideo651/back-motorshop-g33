@@ -13,7 +13,6 @@ import validCpfMiddleware from "../middleware/validCpf.middleware";
 import validIdMiddleware from "../middleware/validId.middleware";
 import validTokenMiddleware from "../middleware/validToken.middleware";
 import validUserMiddleware from "../middleware/validUser.middleware";
-import validActiveUserMiddleware from "../middleware/validActiveUser.middleware";
 import { verifyRequestPerSchema } from "../middleware/validSchema.middleware";
 import { newUserSchema } from "../schemas/user.schemas";
 
@@ -52,7 +51,6 @@ userRoutes.delete(
   "/:id",
   validTokenMiddleware,
   validIdMiddleware,
-  validActiveUserMiddleware,
   deleteUserController
 );
 

@@ -4,8 +4,8 @@ import "dotenv/config";
 
 import { User } from "./entities/user.entity";
 import { Announcement } from "./entities/announcement.entity";
-import { Photos } from "./entities/photos";
-import { createEntities1681410663813 } from "./migrations/1681410663813-createEntities";
+import { Photos } from "./entities/photos.entity";
+import { InitialEntities1682362328750 } from "./migrations/1682362328750-InitialEntities";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -25,7 +25,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Announcement, Photos],
-        migrations: [createEntities1681410663813],
+        migrations: [InitialEntities1682362328750],
       }
 );
 
