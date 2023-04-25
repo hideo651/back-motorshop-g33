@@ -61,12 +61,17 @@ export class User {
   @Column({ default: true })
   isActive: boolean;
 
+  @Column({ nullable: true })
+  reset_token: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Announcement, (Announcement) => Announcement.user, { cascade: true })
+  @OneToMany(() => Announcement, (Announcement) => Announcement.user, {
+    cascade: true,
+  })
   announcement: Announcement[];
 }

@@ -6,6 +6,7 @@ import { User } from "./entities/user.entity";
 import { Announcement } from "./entities/announcement.entity";
 import { Photos } from "./entities/photos.entity";
 import { InitialEntities1682362328750 } from "./migrations/1682362328750-InitialEntities";
+import { AddResetTokenUser1682436219174 } from "./migrations/1682436219174-AddResetTokenUser";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -25,7 +26,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [User, Announcement, Photos],
-        migrations: [InitialEntities1682362328750],
+        migrations: [AddResetTokenUser1682436219174],
       }
 );
 

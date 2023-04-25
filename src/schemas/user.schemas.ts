@@ -1,6 +1,11 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { IUserRequest, IUserUpdate, IUser, IProfile } from "../interfaces/users";
+import {
+  IUserRequest,
+  IUserUpdate,
+  IUser,
+  IProfile,
+} from "../interfaces/users";
 
 export const newUserSchema: SchemaOf<IUserRequest> = yup.object().shape({
   name: yup.string().min(2).max(100).required(),
@@ -35,6 +40,7 @@ export const updateUserSchema: SchemaOf<IUserUpdate> = yup.object().shape({
   number: yup.string().max(5),
   complement: yup.string().max(20).nullable(),
   isStaff: yup.boolean(),
+  reset_token: yup.string().nullable(),
 });
 
 export const userResponseSchema: SchemaOf<IUser> = yup.object().shape({
@@ -76,4 +82,8 @@ export const userProfileSchema: SchemaOf<IProfile> = yup.object().shape({
   email: yup.string().email(),
   name: yup.string(),
   id: yup.string(),
+});
+
+export const userResetPasswordSchema = yup.object().shape({
+  password: yup.string().required(),
 });
