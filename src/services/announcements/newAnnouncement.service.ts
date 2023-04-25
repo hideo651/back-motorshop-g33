@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
-import { Photos } from "../../entities/photos";
+import { Photos } from "../../entities/photos.entity";
 import { User } from "../../entities/user.entity";
 import { IAnnouncementRequest } from "../../interfaces/Announcement";
 import { AnnouncementResponseSchema } from "../../schemas/announcement";

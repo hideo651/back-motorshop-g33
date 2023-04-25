@@ -67,6 +67,6 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Announcement, (Announcement) => Announcement.user)
+  @OneToMany(() => Announcement, (Announcement) => Announcement.user, { cascade: true })
   announcement: Announcement[];
 }
