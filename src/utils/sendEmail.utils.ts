@@ -48,7 +48,7 @@ export const resetPasswordTemplate = (
     },
   });
 
-  const newToken = resetToken.replace(/\./g, "_");
+  const newToken = resetToken.replace(/\./g, "&");
 
   const email = {
     body: {
@@ -58,9 +58,9 @@ export const resetPasswordTemplate = (
       action: {
         instructions: "Click the button below to reset your password:",
         button: {
-          color: "#DC4D2F",
+          color: "#092548",
           text: "Reset your password",
-          link: `${protocol}://${host}/users/resetPassword/${newToken}`,
+          link: `http://localhost:5173/execute-password-recovery/${newToken}`,
         },
       },
       outro:
