@@ -9,6 +9,7 @@ export const listAnnouncementService = async (page: number, limit: number) => {
     .createQueryBuilder("announcement")
     .leftJoinAndSelect("announcement.user", "user")
     .select(["announcement", "user.name", "user.id"])
+    .where("announcement.isActive = :isActive", { isActive: true })
     .skip((page - 1) * limit)
     .take(limit)
     .getMany();
@@ -44,6 +45,7 @@ export const randAnnouncementService = async () => {
     .createQueryBuilder("announcement")
     .leftJoinAndSelect("announcement.user", "user")
     .select(["announcement", "user.name", "user.id"])
+    .where("announcement.isActive = :isActive", { isActive: true })
     .orderBy("RANDOM()")
     .limit(12)
     .getMany();
