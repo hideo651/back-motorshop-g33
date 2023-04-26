@@ -48,6 +48,8 @@ export const resetPasswordTemplate = (
     },
   });
 
+  const newToken = resetToken.replace(/\./g, "_");
+
   const email = {
     body: {
       name: userName,
@@ -58,7 +60,7 @@ export const resetPasswordTemplate = (
         button: {
           color: "#DC4D2F",
           text: "Reset your password",
-          link: `${protocol}://${host}/users/resetPassword/${resetToken}`,
+          link: `${protocol}://${host}/users/resetPassword/${newToken}`,
         },
       },
       outro:
