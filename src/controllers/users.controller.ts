@@ -32,14 +32,16 @@ export const getUserController = async (req: Request, res: Response) => {
 };
 
 export const updateUserController = async (req: Request, res: Response) => {
-  const userId: string = req.params.id;
+  const userId: string = req.user.id;
+  // const userId: string = req.params.id;
   const userInfo: IUserUpdate = req.body;
   const userData = await updateUserService(userId, userInfo);
   return res.status(200).json(userData);
 };
 
 export const deleteUserController = async (req: Request, res: Response) => {
-  const userId: string = req.params.id;
+  const userId: string = req.user.id;
+  // const userId: string = req.params.id;
   const userData = await deleteUserService(userId);
   return res.status(204).json(userData);
 };

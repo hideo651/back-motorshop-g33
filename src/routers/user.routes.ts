@@ -39,14 +39,14 @@ userRoutes.get(
 userRoutes.get("/profile", validTokenMiddleware, getProfileController);
 userRoutes.get("/:id", validIdMiddleware, getUserController);
 userRoutes.patch(
-  "/:id",
+  "",
   validTokenMiddleware,
   validIdMiddleware,
-  validUserMiddleware,
+  //validUserMiddleware,
   updateUserController
 );
 userRoutes.delete(
-  "/:id",
+  "",
   validTokenMiddleware,
   validIdMiddleware,
   deleteUserController
