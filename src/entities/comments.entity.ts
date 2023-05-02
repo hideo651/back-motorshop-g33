@@ -17,7 +17,7 @@ export class Comment {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => User, (user) => user.comment)
+  @ManyToOne(() => User, (user) => user.comment, { eager: true, cascade: true })
   user: User;
 
   @ManyToOne(() => Announcement, (announcement) => announcement.comment, {

@@ -1,6 +1,5 @@
 import AppDataSource from "../../data-source";
 import { Announcement } from "../../entities/announcement.entity";
-import AppError from "../../errors/AppError";
 
 export const getUserRetrieverService = async (
   id: string
@@ -9,7 +8,11 @@ export const getUserRetrieverService = async (
     .createQueryBuilder("announcement")
     .leftJoinAndSelect("announcement.photos", "photos")
     .leftJoinAndSelect("announcement.user", "user")
+    .leftJoinAndSelect("announcement.comment", "comment")
+    .leftJoinAndSelect("comment.user", "comment_user")
     .select([
+      "comment",
+      "comment_user.name",
       "announcement",
       "photos",
       "user.id",
@@ -18,11 +21,6 @@ export const getUserRetrieverService = async (
     ])
     .where("announcement.id = :id", { id: id })
     .getOne();
-
-  // const announcement = await announcementRepo.findOne({
-  //   where: { id: id },
-  //   relations: { user: true },
-  // });
 
   return announcement;
 };

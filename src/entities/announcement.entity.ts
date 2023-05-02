@@ -61,6 +61,7 @@ export class Announcement {
 
   @OneToMany(() => Comment, (comment) => comment.announcement, {
     cascade: true,
+    eager: true,
   })
   comment: Comment[];
 }
