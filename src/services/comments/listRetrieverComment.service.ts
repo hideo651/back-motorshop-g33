@@ -10,5 +10,5 @@ export const listRetrieverCommentService = async (announcId: string) => {
     relations: { comment: true },
   });
 
-  return announcComment;
+  return announcComment.comment;
 };
