@@ -7,6 +7,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { Announcement } from "./announcement.entity";
+import { Comment } from "./comments.entity";
 
 @Entity("users")
 export class User {
@@ -74,4 +75,7 @@ export class User {
     cascade: true,
   })
   announcement: Announcement[];
+
+  @OneToMany(() => Comment, (Comment) => Comment.user)
+  comment: Comment[];
 }
