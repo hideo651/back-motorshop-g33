@@ -20,6 +20,9 @@ import {
   newUserSchema,
   userResetPasswordSchema,
 } from "../schemas/user.schemas";
+import uploadImg from "../middleware/photo.middleare";
+import fs from "fs";
+import { v2 as cloudinary } from "cloudinary";
 
 const userRoutes = Router();
 
@@ -58,5 +61,37 @@ userRoutes.patch(
   verifyRequestPerSchema(userResetPasswordSchema),
   resetPasswordController
 );
+userRoutes.post("/upload", uploadImg.array("image"), async (req, res) => {
+  let files;
+
+  if (Array.isArray(req.files)) {
+    // Se req.files for um array, atribui a variável files
+    files = req.files;
+  } else {
+    // Se req.files for um objeto, atribui a variável files o array de arquivos do campo "image"
+    files = req.files["image"];
+  }
+
+  const uploadResults = [];
+
+  for (const file of files) {
+    const upload = await cloudinary.uploader.upload(
+      file.path,
+      (error, result) => result
+    );
+    fs.unlink(file.path, (error) => {
+      if (error) {
+        console.log(error);
+      }
+    });
+    uploadResults.push(upload);
+  }
+
+  // uploadResults.map((e) => {
+  //   console.log(e.public_id);
+  // });
+
+  return res.json(uploadResults);
+});
 
 export default userRoutes;
