@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { newCommentController } from "../controllers/comments.controller";
+import {
+  listCommentController,
+  listRetrieverCommentController,
+  newCommentController,
+} from "../controllers/comments.controller";
 import validTokenMiddleware from "../middleware/validToken.middleware";
 import { validIdAnnouncement } from "../middleware/validAnnouncement.middleware";
 import { verifyRequestPerSchema } from "../middleware/validSchema.middleware";
@@ -14,5 +18,8 @@ commentRouter.post(
   validIdAnnouncement,
   newCommentController
 );
+
+commentRouter.get("/", listCommentController);
+commentRouter.get("/:id", listRetrieverCommentController);
 
 export default commentRouter;
