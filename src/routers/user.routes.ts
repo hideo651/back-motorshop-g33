@@ -20,7 +20,7 @@ import {
   newUserSchema,
   userResetPasswordSchema,
 } from "../schemas/user.schemas";
-import uploadImg from "../middleware/photo.middleare";
+import { uploadImage } from "../middleware/photo.middleare";
 import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -61,9 +61,8 @@ userRoutes.patch(
   verifyRequestPerSchema(userResetPasswordSchema),
   resetPasswordController
 );
-userRoutes.post("/upload", uploadImg.array("image"), async (req, res) => {
-  let files;
-
+userRoutes.post("/upload", uploadImage, async (req, res) => {
+  let files = req.files;
   if (Array.isArray(req.files)) {
     // Se req.files for um array, atribui a variável files
     files = req.files;
@@ -71,9 +70,7 @@ userRoutes.post("/upload", uploadImg.array("image"), async (req, res) => {
     // Se req.files for um objeto, atribui a variável files o array de arquivos do campo "image"
     files = req.files["image"];
   }
-
   const uploadResults = [];
-
   for (const file of files) {
     const upload = await cloudinary.uploader.upload(
       file.path,
@@ -86,12 +83,46 @@ userRoutes.post("/upload", uploadImg.array("image"), async (req, res) => {
     });
     uploadResults.push(upload);
   }
-
-  // uploadResults.map((e) => {
-  //   console.log(e.public_id);
-  // });
+  uploadResults.map((e) => {
+    console.log(e.public_id);
+  });
 
   return res.json(uploadResults);
+
+  // let imageFile;
+  // let avatarFile;
+
+  // if (req.files["image"]) {
+  //   imageFile = req.files["image"][0];
+  // }
+
+  // if (req.files["avatar"]) {
+  //   avatarFile = req.files["avatar"][0];
+  // }
+
+  // const uploadResults = [];
+
+  // if (imageFile) {
+  //   const upload = await cloudinary.uploader.upload(imageFile.path);
+  //   fs.unlink(imageFile.path, (error) => {
+  //     if (error) {
+  //       console.log(error);
+  //     }
+  //   });
+  //   uploadResults.push(upload);
+  // }
+
+  // if (avatarFile) {
+  //   const upload = await cloudinary.uploader.upload(avatarFile.path);
+  //   fs.unlink(avatarFile.path, (error) => {
+  //     if (error) {
+  //       console.log(error);
+  //     }
+  //   });
+  //   uploadResults.push(upload);
+  // }
+
+  // return res.json(uploadResults);
 });
 
 export default userRoutes;

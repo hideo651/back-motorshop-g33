@@ -11,4 +11,7 @@ const uploadImg = multer({
   }),
 });
 
-export default uploadImg;
+export const uploadImage = uploadImg.fields([
+  { name: "image" },
+  { name: "avatar" },
+]);

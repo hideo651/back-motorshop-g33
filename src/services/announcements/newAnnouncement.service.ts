@@ -4,10 +4,13 @@ import { Photos } from "../../entities/photos.entity";
 import { User } from "../../entities/user.entity";
 import { IAnnouncementRequest } from "../../interfaces/Announcement";
 import { AnnouncementResponseSchema } from "../../schemas/announcement";
+import fs from "fs";
+import { v2 as cloudinary } from "cloudinary";
 
 export const newAnnouncementService = async (
   payload: IAnnouncementRequest,
-  userId: string
+  userId: string,
+  arrayPhotos: any
 ) => {
   const announcementRepo = AppDataSource.getRepository(Announcement);
   const userRepo = AppDataSource.getRepository(User);
@@ -17,8 +20,33 @@ export const newAnnouncementService = async (
 
   const fotos = payload.photos;
 
+  let files;
+
+  if (Array.isArray(arrayPhotos)) {
+    // Se arrayPhotos for um array, atribui a variável files
+    files = arrayPhotos;
+  } else {
+    // Se arrayPhotos for um objeto, atribui a variável files o array de arquivos do campo "image"
+    files = arrayPhotos["image"];
+  }
+
+  const uploadResults = [];
+
+  for (const file of files) {
+    const upload = await cloudinary.uploader.upload(
+      file.path,
+      (error, result) => result
+    );
+    fs.unlink(file.path, (error) => {
+      if (error) {
+        console.log(error);
+      }
+    });
+    uploadResults.push(upload);
+  }
+
   const newAnnouncement = announcementRepo.create({
-    avatar: payload.avatar,
+    avatar: uploadResults[0].secure_url,
     brand: payload.brand,
     color: payload.color,
     fipe: payload.fipe,
@@ -32,24 +60,14 @@ export const newAnnouncementService = async (
   });
 
   await announcementRepo.save(newAnnouncement);
-  if (fotos.length > 0) {
-    for (let i = 0; i < fotos.length; i++) {
+  if (uploadResults.length > 0) {
+    for (let i = 0; i < uploadResults.length; i++) {
       const newPhotos = photoRepo.create({
-        image: fotos[i],
+        image: uploadResults[i].secure_url,
         announcement: newAnnouncement,
       });
       await photoRepo.save(newPhotos);
     }
-
-    //   const newPhotos = fotos.map((foto) => {
-    //     const newPhoto = photoRepo.create({
-    //       image: foto,
-    //       announcement: newAnnouncement,
-    //     });
-    //     return newPhoto;
-    //   });
-
-    //   await photoRepo.save(newPhotos);
   }
 
   const returnAnnouncement = await AnnouncementResponseSchema.validate(
