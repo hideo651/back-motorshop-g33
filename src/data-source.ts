@@ -5,8 +5,8 @@ import "dotenv/config";
 import { User } from "./entities/user.entity";
 import { Announcement } from "./entities/announcement.entity";
 import { Photos } from "./entities/photos.entity";
-import { InitialEntities1682362328750 } from "./migrations/1682362328750-InitialEntities";
-import { AddResetTokenUser1682436219174 } from "./migrations/1682436219174-AddResetTokenUser";
+import { Comment } from "./entities/comments.entity";
+import { createEntitys1683028907484 } from "./migrations/1683028907484-createEntitys";
 
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
@@ -25,8 +25,8 @@ const AppDataSource = new DataSource(
         database: process.env.PGDATABASE,
         logging: true,
         synchronize: false,
-        entities: [User, Announcement, Photos],
-        migrations: [AddResetTokenUser1682436219174],
+        entities: [User, Announcement, Photos, Comment],
+        migrations: [createEntitys1683028907484],
       }
 );
 

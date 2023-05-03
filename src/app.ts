@@ -6,6 +6,7 @@ import loginRoutes from "./routers/login.routes";
 import handleError from "./errors/HandleError";
 import announcementRoutes from "./routers/announcement.routes";
 import cors from "cors";
+import commentRouter from "./routers/comments.routes";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use("/users", userRoutes);
 app.use("/login", loginRoutes);
 app.use("/announcement", announcementRoutes);
+app.use("/comment", commentRouter);
 
 app.use(handleError);
 

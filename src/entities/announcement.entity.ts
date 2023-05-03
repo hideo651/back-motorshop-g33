@@ -2,6 +2,7 @@ import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./user.entity";
 import { Photos } from "./photos.entity";
+import { Comment } from "./comments.entity";
 
 @Entity("announcement")
 export class Announcement {
@@ -47,12 +48,20 @@ export class Announcement {
   @Column()
   avatar: string;
 
-  @ManyToOne(() => User, (user: User) => user.announcement, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user: User) => user.announcement, {
+    onDelete: "CASCADE",
+  })
   user: User;
 
-  @OneToMany(() => Photos, (photos) => photos.announcement, { 
+  @OneToMany(() => Photos, (photos) => photos.announcement, {
     cascade: true,
     eager: true,
   })
   photos: Photos[];
+
+  @OneToMany(() => Comment, (comment) => comment.announcement, {
+    cascade: true,
+    eager: true,
+  })
+  comment: Comment[];
 }
