@@ -13,8 +13,8 @@ export const newAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  console.log(req.body);
-  console.log(req.user.id);
+  // console.log(req.body);
+  // console.log(req.user.id);
   const obj = JSON.parse(JSON.stringify(req.body));
   const data = await newAnnouncementService(obj, req.user.id, req.files);
 

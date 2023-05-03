@@ -20,33 +20,8 @@ export const newAnnouncementService = async (
 
   const fotos = payload.photos;
 
-  let files;
-
-  if (Array.isArray(arrayPhotos)) {
-    // Se arrayPhotos for um array, atribui a variável files
-    files = arrayPhotos;
-  } else {
-    // Se arrayPhotos for um objeto, atribui a variável files o array de arquivos do campo "image"
-    files = arrayPhotos["image"];
-  }
-
-  const uploadResults = [];
-
-  for (const file of files) {
-    const upload = await cloudinary.uploader.upload(
-      file.path,
-      (error, result) => result
-    );
-    fs.unlink(file.path, (error) => {
-      if (error) {
-        console.log(error);
-      }
-    });
-    uploadResults.push(upload);
-  }
-
   const newAnnouncement = announcementRepo.create({
-    avatar: uploadResults[0].secure_url,
+    avatar: payload.avatar,
     brand: payload.brand,
     color: payload.color,
     fipe: payload.fipe,
@@ -60,10 +35,10 @@ export const newAnnouncementService = async (
   });
 
   await announcementRepo.save(newAnnouncement);
-  if (uploadResults.length > 0) {
-    for (let i = 0; i < uploadResults.length; i++) {
+  if (fotos.length > 0) {
+    for (let i = 0; i < fotos.length; i++) {
       const newPhotos = photoRepo.create({
-        image: uploadResults[i].secure_url,
+        image: fotos[i],
         announcement: newAnnouncement,
       });
       await photoRepo.save(newPhotos);
