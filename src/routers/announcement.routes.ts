@@ -13,12 +13,15 @@ import { AnnouncementRequestSchema } from "../schemas/announcement";
 import { ensureIsStaffOrIsAdmMiddleware } from "../middleware/ensureIsStaffOrIsAdm.middleware";
 import { validIdAnnouncement } from "../middleware/validAnnouncement.middleware";
 import { ownerAnnouncement } from "../middleware/ownerAnnouncement.middleware";
+import { cloudinaryFunction, uploadImage } from "../middleware/photo.middleare";
 
 const announcementRoutes = Router();
 
 announcementRoutes.post(
   "/",
   validTokenMiddleware,
+  uploadImage,
+  cloudinaryFunction,
   verifyRequestPerSchema(AnnouncementRequestSchema),
   newAnnouncementController
 );
@@ -32,11 +35,7 @@ announcementRoutes.patch(
   ownerAnnouncement,
   updateAnnouncementController
 );
-announcementRoutes.get(
-  "/:id",
-  validIdAnnouncement,
-  getUserRetrieveController
-);
+announcementRoutes.get("/:id", validIdAnnouncement, getUserRetrieveController);
 announcementRoutes.delete(
   "/:id",
   ensureIsStaffOrIsAdmMiddleware,

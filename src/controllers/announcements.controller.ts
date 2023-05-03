@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { newAnnouncementService } from "../services/announcements/newAnnouncement.service";
-import { listAnnouncementService, randAnnouncementService } from "../services/announcements/listAnnouncement.service";
+import {
+  listAnnouncementService,
+  randAnnouncementService,
+} from "../services/announcements/listAnnouncement.service";
 import { updateAnnouncementService } from "../services/announcements/updateAnnouncement.service";
 import { deleteAnnouncementService } from "../services/announcements/deleteAnnouncement.service";
 import { getUserRetrieverService } from "../services/announcements/getUserRetriever.service";
@@ -10,7 +13,10 @@ export const newAnnouncementController = async (
   req: Request,
   res: Response
 ) => {
-  const data = await newAnnouncementService(req.body, req.user.id);
+  // console.log(req.body);
+  // console.log(req.user.id);
+  const obj = JSON.parse(JSON.stringify(req.body));
+  const data = await newAnnouncementService(obj, req.user.id, req.files);
 
   return res.status(201).json(data);
 };
@@ -21,11 +27,10 @@ export const listAnnouncementController = async (
 ) => {
   const page = Number(req.query.page);
   const limit = Number(req.query.limit);
-  if(page){
+  if (page) {
     const data = await listAnnouncementService(page, limit);
     return res.status(200).json(data);
-  }
-  else{
+  } else {
     const data = await randAnnouncementService();
     return res.status(200).json(data);
   }

@@ -4,10 +4,13 @@ import { Photos } from "../../entities/photos.entity";
 import { User } from "../../entities/user.entity";
 import { IAnnouncementRequest } from "../../interfaces/Announcement";
 import { AnnouncementResponseSchema } from "../../schemas/announcement";
+import fs from "fs";
+import { v2 as cloudinary } from "cloudinary";
 
 export const newAnnouncementService = async (
   payload: IAnnouncementRequest,
-  userId: string
+  userId: string,
+  arrayPhotos: any
 ) => {
   const announcementRepo = AppDataSource.getRepository(Announcement);
   const userRepo = AppDataSource.getRepository(User);
@@ -40,16 +43,6 @@ export const newAnnouncementService = async (
       });
       await photoRepo.save(newPhotos);
     }
-
-    //   const newPhotos = fotos.map((foto) => {
-    //     const newPhoto = photoRepo.create({
-    //       image: foto,
-    //       announcement: newAnnouncement,
-    //     });
-    //     return newPhoto;
-    //   });
-
-    //   await photoRepo.save(newPhotos);
   }
 
   const returnAnnouncement = await AnnouncementResponseSchema.validate(
