@@ -18,8 +18,13 @@ export const cloudinaryFunction = async (
   req: Request,
   res: Response,
   next: NextFunction
-): Promise<void> => {
-  if (req.files["avatar"]) {
+) => {
+  console.log(
+    "********************BODY DO CLOUDINARY**************************"
+  );
+  console.log(req.body);
+  console.log(req.files);
+  if (req.files["avatar"][0]) {
     const upload = await cloudinary.uploader.upload(
       req.files["avatar"][0].path,
       (error, result) => result
@@ -32,8 +37,8 @@ export const cloudinaryFunction = async (
     });
   }
 
-  if (req.files["image"]) {
-    const arrayImg = req.files["image"];
+  if (req.files["photos"]) {
+    const arrayImg = req.files["photos"];
     const promises = [];
 
     arrayImg.forEach((img) => {
@@ -63,6 +68,6 @@ export const cloudinaryFunction = async (
 };
 
 export const uploadImage = uploadImg.fields([
-  { name: "image" },
+  { name: "photos" },
   { name: "avatar" },
 ]);
