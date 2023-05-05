@@ -13,6 +13,7 @@ export const getUserRetrieverService = async (
     .select([
       "comment",
       "comment_user.name",
+      "comment_user.id",
       "announcement",
       "photos",
       "user.id",
