@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  commentUpdadeController,
   listCommentController,
   listRetrieverCommentController,
   newCommentController,
@@ -17,6 +18,12 @@ commentRouter.post(
   verifyRequestPerSchema(commentSchema),
   validIdAnnouncement,
   newCommentController
+);
+commentRouter.patch(
+  "/:id",
+  validTokenMiddleware,
+  verifyRequestPerSchema(commentSchema),
+  commentUpdadeController
 );
 
 commentRouter.get("/", listCommentController);
