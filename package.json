@@ -1,7 +1,7 @@
 {
   "name": "motorshop_g33_t13",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "src/server.ts",
   "author": "Grupo 33 Módulo 6 T13",
   "license": "MIT",
   "scripts": {
