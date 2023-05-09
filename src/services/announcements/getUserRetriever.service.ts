@@ -19,6 +19,7 @@ export const getUserRetrieverService = async (
       "user.id",
       "user.name",
       "user.description",
+      "user.phone",
     ])
     .where("announcement.id = :id", { id: id })
     .getOne();
