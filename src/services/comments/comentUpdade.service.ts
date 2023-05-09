@@ -25,5 +25,5 @@ export const commentUpdadeService = async (
   });
   await commentRepo.save(updadeRes);
 
-  return updadeRes.comments;
+  return updadeRes;
 };
