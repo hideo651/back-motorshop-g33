@@ -9,12 +9,12 @@ import { Comment } from "./entities/comments.entity";
 import { createEntitys1683028907484 } from "./migrations/1683028907484-createEntitys";
 
 const AppDataSource = new DataSource(
-  process.env.NODE_ENV === "test"
+  process.env.NODE_ENV === "production"
     ? {
-        type: "sqlite",
-        database: ":memory:",
-        synchronize: true,
-        entities: ["src/entities/*.ts"],
+        type: "postgres",
+        url: process.env.DATABASE_URL,
+        entities: [User, Announcement, Photos, Comment],
+        migrations: [createEntitys1683028907484],
       }
     : {
         type: "postgres",
