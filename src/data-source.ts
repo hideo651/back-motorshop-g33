@@ -1,0 +1,33 @@
+import { DataSource } from "typeorm";
+import path from "path";
+import "dotenv/config";
+
+import { User } from "./entities/user.entity";
+import { Announcement } from "./entities/announcement.entity";
+import { Photos } from "./entities/photos.entity";
+import { Comment } from "./entities/comments.entity";
+import { createEntitys1683028907484 } from "./migrations/1683028907484-createEntitys";
+
+const AppDataSource = new DataSource(
+  process.env.NODE_ENV === "test"
+    ? {
+        type: "sqlite",
+        database: ":memory:",
+        synchronize: true,
+        entities: ["src/entities/*.ts"],
+      }
+    : {
+        type: "postgres",
+        host: process.env.PGHOST,
+        port: parseInt(process.env.PGPORT!),
+        username: process.env.PGUSER,
+        password: process.env.PGPASSWORD,
+        database: process.env.PGDATABASE,
+        logging: true,
+        synchronize: false,
+        entities: [User, Announcement, Photos, Comment],
+        migrations: [createEntitys1683028907484],
+      }
+);
+
+export default AppDataSource;
