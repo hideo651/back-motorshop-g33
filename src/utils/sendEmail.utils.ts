@@ -60,7 +60,7 @@ export const resetPasswordTemplate = (
         button: {
           color: "#092548",
           text: "Reset your password",
-          link: `http://localhost:5173/execute-password-recovery/${newToken}`,
+          link: `https://motorshop-g33.vercel.app/execute-password-recovery/${newToken}`,
         },
       },
       outro:

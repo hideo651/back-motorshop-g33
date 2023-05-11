@@ -18,11 +18,7 @@ const AppDataSource = new DataSource(
       }
     : {
         type: "postgres",
-        host: process.env.PGHOST,
-        port: parseInt(process.env.PGPORT!),
-        username: process.env.PGUSER,
-        password: process.env.PGPASSWORD,
-        database: process.env.PGDATABASE,
+        url: process.env.DATABASE_URL,
         logging: true,
         synchronize: false,
         entities: [User, Announcement, Photos, Comment],
