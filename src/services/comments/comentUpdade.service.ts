@@ -1,6 +1,7 @@
 import AppDataSource from "../../data-source";
 import { Comment } from "../../entities/comments.entity";
 import AppError from "../../errors/AppError";
+import { userResponseSchema } from "../../schemas/user.schemas";
 
 export const commentUpdadeService = async (
   commentId: string,
@@ -25,5 +26,11 @@ export const commentUpdadeService = async (
   });
   await commentRepo.save(updadeRes);
 
-  return updadeRes;
+  const returnUser = await userResponseSchema.validate(updadeRes.user, {
+    stripUnknown: true,
+  });
+
+  const updateComment = { ...updadeRes, user: returnUser };
+
+  return updateComment;
 };
