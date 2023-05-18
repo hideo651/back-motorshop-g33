@@ -1,51 +1,82 @@
 <div style="display:flex;justify-content:center"><img src="./g33.png" /></div>
-<h1 style="font-size:48px;color:mediumblue">Projeto Full Stack - Motorshop G33</h1>
+<h1 style="font-size:48px;">Projeto Full Stack - Motorshop G33</h1>
 <p style="font-size:18px;padding:0px 25px 10px">Projeto Full-stack de gestão de anúncios de veículos. Desenvolvimento Front-End em typescript React-TS Vite e Back-End em typescript com Node em Express e TypeORM com banco de dados PostgreSQL, consumo de API <a href="https://kenzie-kars.herokuapp.com/api" taget="_blank"> Kenzie-Kars</a> e hospedagem de upload de imagens pelo Cloudinary. </p>
+
+<br/>
+
+## ✅ Links da aplicação
+
+- URL de teste: http://localhost:3000
+- URL de produção: https://motorshopg33v2.onrender.com/
+
+<br/>
+
+## 🦾 **Tecnologias utilizadas**
+
+- **TypeScript**
+- **NodeJS**
+- **Express**
+- **Express-async-errors**
+- **PostgreSQL**
+- **Bcrypt**
+- **Json Web Token**
+- **Class-transformer**
+- **Dotenv**
+- **TypeORM**
+- **Multer**
+- **Cloudinary**
+- **Nodemailer**
+- **Mailgen**
 
 #
 
-<h2 style="font-size:32px;color:mediumblue">Como instalar o projeto:</h2>
+<h2 style="font-size:32px;">Como instalar o projeto:</h2>
 
-1. Vá ao webiste do <a href="http://nodejs.org" target="_blank">Node.js</a>, faça download da aplicação e instale o servidor para rodar ambos front e back ends.
+1.  Vá ao webiste do <a href="http://nodejs.org" target="_blank">Node.js</a>, faça download da aplicação e instale o servidor para rodar ambos front e back ends.
 
-2. Vá ao webiste do <a href="http://postgresql.org" target="_blank">PostgreSQL</a>, faça download da aplicação e instale o servidor para rodar o banco de dados usado no backend. Anote as informações definidas durante a instalação, como senha e porta de execução do postgre serão necessários na configuração do sistema.
+2.  Vá ao webiste do <a href="http://postgresql.org" target="_blank">PostgreSQL</a>, faça download da aplicação e instale o servidor para rodar o banco de dados usado no backend. Anote as informações definidas durante a instalação, como senha e porta de execução do postgre serão necessários na configuração do sistema.
 
-3. Vá ao website do <a href="http://gmail.com" target="_blank">Google GMail</a>, crie uma conta de email para enviar emails de recuperação de senhas para os usuários e use na configuração do <code>.ENV</code>.
+3.  Vá ao website do <a href="https://myaccount.google.com/" target="_blank">Google Conta</a>, no campo de busca, escreva "Senhas de app", selecione o app "email" e o dispositivo "computador" e clique em "gerar", com a senha gerada e o seu emial do Google, configure o seu<code>.ENV</code>.
 
-4. Vá ao website da <a href="" target="_bloank">Cloudinary</a>, crie uma conta de acesso. Ao completar vá ao Dashboard e copie a API Environment variable para ser usado na configuração do <code>.ENV</code>
+4.  Vá ao website da <a href="" target="_bloank">Cloudinary</a>, crie uma conta de acesso. Ao completar vá ao Dashboard e copie a API Environment variable para ser usado na configuração do <code>.ENV</code>
 
-5. Com ambos instalados, execute o SQL Shell (psql) para criar o banco de dados: <code>CREATE DATABASE motorshop_g33</code>
+5.  Com ambos instalados, execute o SQL Shell (psql) para criar o banco de dados: <code>CREATE DATABASE motorshop_g33</code>
 
-6. Renomeie o arquivo <code>.env.example</code> da pasta <b>/backend</b> para <code>.env</code> e edite com as informações definidas por você na configuração do PostgreSQL<pre>
-   PGHOST=localhost
-   PGPORT=5432
-   PGUSER=postgres
-   PGPASSWORD=suasenha
-   PGDATABASE=motorshop_g33
-   SECRET_KEY=TroqueEssaSecrect_key
-   SMTP_USER=user@gmail.com
-   SMTP_PASS=senhadacontagmail
-   CLOUDINARY_URL=cloudinary://11111111111111:XXXx1XxxxX111xxXXX11Xx11xxxxxx@xxxxxxxx
+6.  Renomeie o arquivo <code>.env.example</code> da pasta <b>/backend</b> para <code>.env</code> e edite com as informações definidas por você na configuração do PostgreSQL
 
-</pre>
+    ```javascript
+        DATABASE_URL = postgres://<user>:<senha_do_user>@localhost:<porta>/<nome_da_database>
 
-7. Após ter a base de dados criada, execute o <b>Node.js command prompter</b>. Vá até as pastas de <b>/frontend</b> e <b>/backend</b> e execute <b>em ambas</b> o comando: <code>npm install</code>
+        SECRET_KEY = TroqueEssaSecrect_key
+        SMTP_USER = user@gmail.com
+        SMTP_PASS = senha_app_google_gerada
+        CLOUDINARY_URL = cloudinary://11111111111111:XXXx1XxxxX111xxXXX11Xx11xxxxxx@xxxxxxxx
+    ```
 
-8. Ainda no <b>Node.js command prompter</b>, na pasta <b>/backend</b>, execute o comando para persistirem as migrações da API no banco de dados: <code>npm run typeorm migrations:run -- -d .\src\data-source.ts</code>
+7.  Após ter a base de dados criada, execute o <b>Node.js command prompter</b>. Vá até as pastas de <b>/frontend</b> e <b>/backend</b> e execute <b>em ambas</b> o comando: <code>yarn install</code>
 
-9. Por fim, em terminais separados, execute <code>npm start</code> em <b>/backend</b> e <code>npm run dev</code> em <b>/frontend</b><pre>{
-   "web_url":"http://localhost:5173",
-   "api_url":"http://localhost:3000"
-   }</pre>
+8.  Ainda no <b>Node.js command prompter</b>, na pasta <b>/backend</b>, execute o comando para persistirem as migrações da API no banco de dados: <code>yarn run typeorm migrations:run -- -d .\src\data-source.ts</code>
 
-<h2 style="font-size:32px;color:mediumblue">Back-End - Motorshop G33 API:</h2>
+9.  Entre na pasta "utils", no arquivo "sendEmail.utils", na variavel "email" altere o link para `http://localhost:5173/execute-password-recovery/${newToken}` para testar a aplicação em ambiente de desenvolvimento ou passe o localhost onde o front-end está sendo utilizado.
+
+10. Por fim, em terminais separados, execute <code>yarn dev</code> em <b>/backend</b> e <code>yarn dev</code> em <b>/frontend</b>
+
+<h2 style="font-size:32px">Back-End - Motorshop G33 API:</h2>
+
+## ➡️ **Rotas da aplicação**
+
+### Rotas do usuário
+
+<br>
+<br>
 
 # /users
 
 <h4><b>POST:</b> Rota disponível sem autenticação ou permissão, usada para cadastro de usuários, onde isStaff é um booleano que identifica um vendedor (true) de um comprador (false).</h4>
 Request:
-<pre>
-{
+
+```javascript
+   {
     "name": "Marcelo Henrique",
     "email": "marcelo@mh.app.br",
     "password": "654321",
@@ -61,11 +92,14 @@ Request:
     "complement":"Ap 1101",
     "isStaff":true,
     "isAdm": false
-}
-</pre>
+    }
+```
+
 Response: <b>201 Created</b>
-<pre>
-{
+
+```javascript
+
+   {
     "id": "937a84da-1e6c-49a2-bc83-d4b91cea589c",
     "name": "Marcelo Henrique",
     "email": "marcelo@mh.app.br",
@@ -84,67 +118,67 @@ Response: <b>201 Created</b>
     "isActive": true,
     "createdAt": "2023-04-26T14:01:31.908Z",
     "updatedAt": "2023-04-26T14:01:31.908Z"
-}
-</pre>
+    }
+```
+
+#
 
 <h4><b>GET:</b> Rota disponível somente para usuário autenticado com conta de administrador, usada para listagem de todos os usuários cadastrados.</h4>
-Request:
-<pre>
-{}
-</pre>
+
 Response: <b>200 OK</b>
-<pre>
-[{
-    "id": "937a84da-1e6c-49a2-bc83-d4b91cea589c",
-    "name": "Marcelo Henrique",
-    "email": "marcelo@mh.app.br",
-    "cpf": "789.123.789-10",
-    "phone": "5531995941235",
-    "birthday": "1980-06-06T03:00:00.000Z",
-    "description": "Usuário vendedor",
-    "cep": "12345-678",
-    "state": "Minas Gerais",
-    "city": "Belo Horizonte",
-    "street": "Av. Afonso Pena",
-    "number": "024",
-    "complement": "Ap 1101",
-    "isStaff": true,
-    "isAdm": false,
-    "isActive": true,
-    "createdAt": "2023-04-26T14:01:31.908Z",
-    "updatedAt": "2023-04-26T14:01:31.908Z"
-},
-{
-    "id": "dca1bc25-2d8f-4589-99af-10d3d7810a3f",
-    "name": "System Operator",
-    "email": "sysop@mh.app.br",
-    "cpf": "123.456.789-10",
-    "phone": "5531995941235",
-    "birthday": "1980-06-06T03:00:00.000Z",
-    "description": "Smooth Operator",
-    "cep": "12345-678",
-    "state": "Minas Gerais",
-    "city": "Belo Horizonte",
-    "street": "Av. Afonso Pena",
-    "number": "10420",
-    "complement": null,
-    "isStaff": true,
-    "isAdm": true,
-    "isActive": true,
-    "createdAt": "2023-04-26T14:01:17.910Z",
-    "updatedAt": "2023-04-26T14:01:17.910Z"
-}]
-</pre>
+
+```javascript
+[
+  {
+    id: "937a84da-1e6c-49a2-bc83-d4b91cea589c",
+    name: "Marcelo Henrique",
+    email: "marcelo@mh.app.br",
+    cpf: "789.123.789-10",
+    phone: "5531995941235",
+    birthday: "1980-06-06T03:00:00.000Z",
+    description: "Usuário vendedor",
+    cep: "12345-678",
+    state: "Minas Gerais",
+    city: "Belo Horizonte",
+    street: "Av. Afonso Pena",
+    number: "024",
+    complement: "Ap 1101",
+    isStaff: true,
+    isAdm: false,
+    isActive: true,
+    createdAt: "2023-04-26T14:01:31.908Z",
+    updatedAt: "2023-04-26T14:01:31.908Z",
+  },
+  {
+    id: "dca1bc25-2d8f-4589-99af-10d3d7810a3f",
+    name: "System Operator",
+    email: "sysop@mh.app.br",
+    cpf: "123.456.789-10",
+    phone: "5531995941235",
+    birthday: "1980-06-06T03:00:00.000Z",
+    description: "Smooth Operator",
+    cep: "12345-678",
+    state: "Minas Gerais",
+    city: "Belo Horizonte",
+    street: "Av. Afonso Pena",
+    number: "10420",
+    complement: null,
+    isStaff: true,
+    isAdm: true,
+    isActive: true,
+    createdAt: "2023-04-26T14:01:17.910Z",
+    updatedAt: "2023-04-26T14:01:17.910Z",
+  },
+];
+```
 
 # /users/profile
 
-<h4><b>GET:</b> Rota disponível somente para usuário autenticado, usada para pegar as informações do próprio usuário.</h4>
-Request:
-<pre>
-{}
-</pre>
+<h4><b>GET:</b> Rota disponível somente para usuário autenticado, usada para pegar as informações do próprio usuário logado.</h4>
+
 Response: <b>200 OK</b>
-<pre>
+
+```javascript
 {
 	"id": "937a84da-1e6c-49a2-bc83-d4b91cea589c",
 	"name": "Marcelo Henrique",
@@ -179,17 +213,18 @@ Response: <b>200 OK</b>
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScaVIZ4aPgH5CvnRne58bUVccvVYFpAPYYdQ&usqp=CAU"
     }]
 }
-</pre>
+
+```
+
+#
 
 # /users/:user_id
 
 <h4><b>GET:</b> Rota disponível somente para usuário autenticado, usada para pegar as informações de um usuário pelo id.</h4>
-Request:
-<pre>
-{}
-</pre>
+
 Response: <b>200 OK</b>
-<pre>
+
+```javascript
 {
 	"id": "ed50d743-13a3-47d7-b7d1-36bb174a6399",
 	"name": "Sidnei Barreto",
@@ -224,16 +259,21 @@ Response: <b>200 OK</b>
             "avatar": "https://www.rastreadores.org/wp-content/uploads/2019/06/rastreadores-wr-v-honda.jpg"
         }]
 }
-</pre>
+```
 
 <h4><b>PATCH:</b> Rota disponível somente para usuário autenticado com permissão de administrador ou dono dos dados, usada para atualizar as informações de um usuário pelo id.</h4>
-<pre>
+
 Request:
+
+```javascript
 {
 	"description":"Veículos de alto padrão de marcas internacionais como Honda, Citroen e Hyundai. Excelentes condições para garantir um veículo de luxo e requinte que em breve possa ser seu."
-}</pre>
+}
+```
+
 Response: <b>200 OK</b>
-<pre>
+
+```javascript
 {
     "id": "ed50d743-13a3-47d7-b7d1-36bb174a6399",
     "name": "Sidnei Barreto",
@@ -254,39 +294,93 @@ Response: <b>200 OK</b>
     "createdAt": "2023-04-26T14:01:35.926Z",
     "updatedAt": "2023-04-27T00:23:59.653Z"
 }
-</pre>
+```
 
 <h4><b>DELETE:</b> Rota disponível para usuário autenticado com permissão de administrador ou dono dos dados, usada para deletar uma conta de usuário e seus anúncios, fotos e comentários pelo id.</h4>
-Request:
-<pre>
-{}
-</pre>
 Response: <b>204 No Content</b>
-<pre>
-{}
-</pre>
+
+<br>
+
+# users/resetPassword
+
+### 1) Enviar o email com o reset token - POST /users/resetPassword
+
+<br>
+
+<h4><b>POST:</b> Rota para o envio do link do reset da senha por email, ao passar o email de um usuário cadastro, uma mensagem contendo o link da rota para alterar a senha é enviada ao email, o token está dentro da URL.</h4>
+
+Request:
+
+```javascript
+    {
+        "email": "sydbarret@mh.app.br"
+    }
+```
+
+Response <b>200 OK </b>
+
+```javascript
+    {
+        "message": "token send"
+    }
+```
+
+<br>
+
+### 2) Reset da senha - PATCH /users/resetPassword/:resetToken
+
+<br>
+
+<h4><b>PATCH</b> Rota para o reset da senha, para realizar o patch da senha, o usuário deve estar autenticado (token) e passar o "reset token" enviado por email, na URL da requisição e a nova senha no body.
+É necessário substituir todos os "&" que estão dentro do "reset token" por ".", a requisição PATCH irá falhar se o "reset token" conter "&".
+
+Request:
+
+```javascript
+{
+	"password": "batata1234"
+}
+```
+
+Response <b>200 OK </b>
+
+```javascript
+{
+	"message": "Password change with sucess"
+}
+```
 
 # /login
 
 <h4><b>POST:</b> Rota disponível sem autenticação ou permissão, usada para autenticação de usuários.Request:</h4>
-<pre>
+
+```javascript
+
 {
 	"email": "marcelo@mh.app.br",
 	"password": "654321"
 }
-</pre>
+
+```
+
 Response: <b>200 OK</b>
-<pre>
+
+```javascript
+
 {
 	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbSI6ZmFsc2UsImlhdCI6MTY3OTcxNjA4MSwiZXhwIjoxNjc5ODAyNDgxLCJzdWIiOiI3YzVhMTg1NC1lMjc4LTRmMTUtYTU1Yi0wM2NhMjgwMTIyYTgifQ.omTR6v2uvR6caKTPkfg4_HfCnhISNq_9bfMa-lXeCyY"
 }
-</pre>
+
+
+```
 
 # /announcement
 
 <h4><b>POST</b>: Rota disponível somente para usuário autenticado com permissão de vendedor, usada para criar anúncios de veículos.</h4>
 Request:
-<pre>
+
+```javascript
+
 {
     "brand": "Ford",
     "model": "Mustang GT Premium 5.0 V8",
@@ -303,9 +397,13 @@ Request:
     "https://i.pinimg.com/originals/35/61/5f/35615f58e8cddd68b97fd142fa0d2d0c.png"
     ]
 }
-</pre>
+
+```
+
 Response: <b>201 Created</b>
-<pre>
+
+```javascript
+
 {
     "updatedAt": "2023-04-26T14:04:46.276Z",
     "avatar": "https://i.pinimg.com/originals/51/ff/c0/51ffc02ed1890b091c83e565d4141ec8.jpg",
@@ -322,15 +420,15 @@ Response: <b>201 Created</b>
     "brand": "Ford",
     "id": "c692036a-891f-4679-a683-7b2b81ecdc22"
 }
-</pre>
+
+```
 
 <h4><b>GET:</b> Rota disponível somente para usuário autenticado, usada para listar anúncios cadastrados. Pode receber parâmetros para paginação e limite: (ex: ?page=1&limit=5 )</h4>
-Request:
-<pre>
-{}
-</pre>
 Response: <b>200 OK</b>
-<pre>
+
+```javascript
+
+
 "results": [{
     "id": "ec32914d-6919-4e44-a6d8-3aa4c2896aa1",
     "brand": "Fiat",
@@ -371,17 +469,15 @@ Response: <b>200 OK</b>
         "name": "Marcelo Henrique"
     }
 }]
-</pre>
+```
 
 # /announcement/:annoucement_id
 
 <h4><b>GET:</b> Rota disponível somente para usuário autenticado, usada para pegar um anúncio por id.</h4>
-Request:
-<pre>
-{}
-</pre>
+
 Response: <b>200 OK</b>
-<pre>
+
+```javascript
 {
 	"id": "fb160ddb-a539-4290-940d-c2cc4c3c2df2",
 	"brand": "Chevrolet",
@@ -414,17 +510,25 @@ Response: <b>200 OK</b>
         }
     }]
 }
-</pre>
+
+
+```
 
 <h4><b>PATCH:</b> Rota disponível somente para usuário autenticado como administrador ou vendedor dono do anúncio, usada para atualizar informações ou ativar/desativar um anúncio pelo id.</h4>
 Request:
-<pre>
+
+```javascript
+
 {
 	"isActive": false
 }
-</pre>
+
+```
+
 Response: <b>200 OK</b>
-<pre>
+
+```javascript
+
 {
 	"updatedAt": "2023-04-27T00:45:13.860Z",
 	"avatar": "https://www.rastreadores.org/wp-content/uploads/2019/06/rastreadores-wr-v-honda.jpg",
@@ -442,29 +546,38 @@ Response: <b>200 OK</b>
 	"id": "de344094-957e-44b1-9410-c98e779ae302",
 	"photos": []
 }
-</pre>
+
+```
+
+<br>
 
 <h4><b>DELETE:</b> Rota disponível somente para usuário autenticado como administrador ou dono do anúncio, usada para apagar um anúncio e suas fotos pelo id.</h4>
-Request:
-<pre>
-{}
-</pre>
+
 Response: <b>204 No content</b>
-<pre>
-{}
-</pre>
+
+<br>
 
 # /comment
 
-<h4><b>POST</b>: Rota disponível somente para usuário autenticado, usada para enviar mensagens, seja para um canal ou diretamente a um usuário.</h4>
+### 1) Enviar um post no anúncio - POST /comment/:AnnouncementId
+
+<br>
+
+<h4><b>POST</b>: Rota disponível somente para usuário autenticado, usada para enviar mensagens, seja para um canal ou diretamente a um usuário. O id do anúncio deve ser passado na URL da requisição</h4>
 Request:
-<pre>
+
+```javascript
 {
 	"comment": "O carro me parece impecável! Podemos negociar?"
 }
-</pre>
+
+
+```
+
 Response: <b>201 Created</b>
-<pre>
+
+```javascript
+
 {
     "updatedAt": "2023-05-04T17:09:36.224Z",
     "createdAt": "2023-05-04T17:09:36.224Z",
@@ -484,4 +597,135 @@ Response: <b>201 Created</b>
         "brand": "Chevrolet"
     }
 }
-</pre>
+
+```
+
+<br>
+
+### 2) Alterar o comentário - POST /comment/:CommentId
+
+<h4><b>PATCH</b>: Rota disponível somente para usuário autenticado e dono do comentário, usada para alterar um comentário feito pelo usuário, o id do comentário deve ser passado na URL da requisição</h4>
+Request:
+
+```javascript
+{
+	"comment" : "Você parcela em quantas vezes ?"
+}
+```
+
+Response: <b>200 OK</b>
+
+```javascript
+
+{
+	"id": "03f82ed8-4b96-43cc-a223-0e73be1a59b2",
+	"comments": "Você parcela em quantas vezes ?",
+	"createdAt": "2023-05-18T12:59:43.151Z",
+	"updatedAt": "2023-05-18T13:07:05.733Z",
+	"user": {
+		"id": "e3206a94-1560-4bb7-b641-42ca1123522a",
+		"name": "Carlos Silva",
+		"email": "carlos@mail.com",
+		"cpf": "782.125.719-12",
+		"phone": "5531995941235",
+		"birthday": "1989-09-30T03:00:00.000Z",
+		"description": "Comprador",
+		"cep": "12345-678",
+		"state": "São Paulo",
+		"city": "Campinas",
+		"street": "Av. Fittipaldi",
+		"number": "420",
+		"complement": null,
+		"isStaff": true,
+		"isAdm": false,
+		"isActive": true,
+		"createdAt": "2023-05-04T14:27:10.201Z",
+		"updatedAt": "2023-05-16T14:17:41.949Z"
+	}
+}
+
+```
+
+<br>
+
+### 3) Deletar o comentário - DELETE /comment/:CommentId
+
+<h4><b>DELETE</b>: Rota disponível somente para usuário autenticado e dono do comentário, usada para deletar um comentário, o id do comentário deve ser passado na URL da requisição, se a requisição for bem sucedida, é retornando como resposta um status 204 sem conteúdo(no body) como resposta</h4>
+
+<br/>
+
+<h1 align="center">👥 Desenvolvedores responsáveis</h1>
+
+<table align="center">
+  <tr>
+        <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/106833760?s=96&v=4" width="100px;" alt="Foto do Ayrton"/><br>          
+        <sub>
+          <b>Ayrton Hideo Hirata</b>  <br/>
+          <b>Dev</b> <br/>
+           <div align="center">
+            <a href="https://github.com/hideo651" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+           </div>
+            <div align="center">
+                <a href="https://www.linkedin.com/in/ayrton-hideo-hirata-29aa4367/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+            </div>
+        </sub>
+    </td> 
+    <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/86388680?v=4" width="100px;" alt="Foto do Douglas"/><br>        
+        <sub>
+          <b>Douglas dos Santos Borges</b> <br/>
+          <b>Dev</b> <br/>
+          <div align="center">
+            <a href="https://github.com/DouglasB834" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+          </div>
+           <div align="center">
+            <a href="https://www.linkedin.com/in/douglassborges/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+           </div>
+        </sub>
+    </td>
+    <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/63411314?v=4" width="100px;" alt="Foto do Daniel"/><br>        
+        <sub>
+          <b>Daniel Lobato de Souza</b> <br/>
+          <b>Dev</b> <br/>
+           <div align="center">
+            <a href="https://github.com/simplesmentedan" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+           </div>
+            <div align="center">
+              <a href="https://www.linkedin.com/in/simplesmentedan/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+             </div>
+        </sub>
+    </td>
+     <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/106773009?v=4" width="100px;" alt="Foto do Felipe"/><br>        
+        <sub>
+            <b>Felipe Bulhões</b> <br/>
+            <b>Dev</b> <br/>
+             <div align="center">
+            <a href="https://github.com/FelipeBulhoes" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+            </div>
+            <div align="center">
+                <a href="https://www.linkedin.com/in/felipebulhoes/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+            </div>
+        </sub>
+    </td>   
+  </tr>
+</table>
+<table align="center">
+  <tr>
+  <td align="center">
+        <img src="https://avatars.githubusercontent.com/u/96503481?v=4" width="100px;" alt="Foto do Marcelo"/><br>          
+        <sub>
+          <b>Marcelo Henrique Aguiar Marques</b>  <br/>
+          <b>Dev</b> <br/>
+           <div align="center">
+            <a href="https://github.com/MHAMarques" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"/>
+            </div>
+             <div align="center">
+                <a href="https://www.linkedin.com/in/mhmarques/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"/>
+             </div>
+        </sub>
+    </td> 
+  </tr>
+</table>

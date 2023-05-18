@@ -27,7 +27,7 @@ export const commentDeleteController = async (req: Request, res: Response) => {
   const userId = req.user.id;
 
   const data = await commentDeleteService(commentId, userId);
-  res.status(200).json(data);
+  res.status(204).json(data);
 };
 
 export const listCommentController = async (req: Request, res: Response) => {
